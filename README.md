@@ -10,9 +10,9 @@ This library assists in generating random strings based on specific characterist
 
 ## Installation
 
-\```bash
+```bash
 go get -u github.com/necmettindev/randomstring
-\```
+```
 
 ## Usage
 
@@ -22,7 +22,7 @@ Below are different scenarios demonstrating how to use the `randomstring` packag
 
 Generate a string of length 10 using the default alphanumeric characters:
 
-\```go
+```go
 package main
 
 import (
@@ -31,49 +31,57 @@ import (
 )
 
 func main() {
-result, \_ := randomstring.GenerateString(randomstring.GenerationOptions{Length: 10})
-fmt.Println(result)
+    opts := randomstring.GenerationOptions{
+        Length: 10,
+    }
+
+    result, _ := randomstring.GenerateStrin(opts)
+
+    fmt.Println(result)
 }
-\```
+```
 
 ### Disabling Features
 
 For instance, to generate a string containing letters only:
 
-\```go
-opts := randomstring.GenerationOptions{
-Length: 10,
-DisableNumeric: true,
-}
-result, \_ := randomstring.GenerateString(opts)
-fmt.Println(result)
-\```
+```go
+    opts := randomstring.GenerationOptions{
+        Length: 10,
+        DisableNumeric: true,
+    }
+
+    result, _ := randomstring.GenerateString(opts)
+    fmt.Println(result)
+```
 
 ### Using Special Characters
 
 Generate a string with enabled special characters:
 
-\```go
-opts := randomstring.GenerationOptions{
-Length: 15,
-EnableSpecialCharacter: true,
-}
-result, \_ := randomstring.GenerateString(opts)
-fmt.Println(result)
-\```
+```go
+    opts := randomstring.GenerationOptions{
+        Length: 15,
+        EnableSpecialCharacter: true,
+    }
+
+    result, _ := randomstring.GenerateString(opts)
+    fmt.Println(result)
+```
 
 ### Using a Custom Character Set
 
 Generate a string with your own custom character set:
 
-\```go
-opts := randomstring.GenerationOptions{
-Length: 12,
-CustomCharset: "abcXYZ789",
-}
-result, \_ := randomstring.GenerateString(opts)
-fmt.Println(result) // Produces a string consisting only of 'a', 'b', 'c', 'X', 'Y', 'Z', '7', '8', '9'.
-\```
+```go
+    opts := randomstring.GenerationOptions{
+        Length: 12,
+        CustomCharset: "abcXYZ789",
+    }
+
+    result, _ := randomstring.GenerateString(opts)
+    fmt.Println(result) // Produces a string consisting only of 'a', 'b', 'c', 'X', 'Y', 'Z', '7', '8', '9'.
+```
 
 ## Contributing
 
