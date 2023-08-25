@@ -27,7 +27,7 @@ type GenerationOptions struct {
 	DisableLowercase       bool
 	DisableUppercase       bool
 	EnableSpecialCharacter bool
-	CustomCharset          Charset // Yeni eklenen alan: kullanıcı tanımlı karakter seti
+	CustomCharset          Charset
 }
 
 func generateStringFromCharset(charset Charset, length int) (string, error) {
