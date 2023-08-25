@@ -53,3 +53,37 @@ func TestGenerateString(t *testing.T) {
 		}
 	}
 }
+
+func TestModifyCharset(t *testing.T) {
+	tests := []struct {
+		opts GenerationOptions
+	}{
+		{GenerationOptions{DisableNumeric: true}},
+		{GenerationOptions{DisableLowercase: true}},
+		{GenerationOptions{DisableUppercase: true}},
+		{GenerationOptions{EnableSpecialCharacter: true}},
+		{GenerationOptions{DisableNumeric: true, DisableLowercase: true, DisableUppercase: true}},
+		{GenerationOptions{DisableNumeric: true, DisableLowercase: true, DisableUppercase: true, EnableSpecialCharacter: true}},
+	}
+
+	for _, tt := range tests {
+		charset := modifyCharset(tt.opts, map[string]Charset{
+			"numeric":         Numeric,
+			"lowercase":       Lowercase,
+			"uppercase":       Uppercase,
+			"specialCharater": SpecialCharacters,
+		}, Alphanumeric)
+		if !tt.opts.DisableNumeric && !tt.opts.DisableLowercase && !tt.opts.DisableUppercase && !tt.opts.EnableSpecialCharacter && charset != Alphanumeric {
+			t.Errorf("expected charset to be Alphanumeric, got %v", charset)
+		}
+		if tt.opts.DisableNumeric && charset == Numeric {
+			t.Errorf("expected charset to not contain numeric characters, got %v", charset)
+		}
+		if tt.opts.DisableLowercase && charset == Lowercase {
+			t.Errorf("expected charset to not contain lowercase characters, got %v", charset)
+		}
+		if tt.opts.DisableUppercase && charset == Uppercase {
+			t.Errorf("expected charset to not contain uppercase characters, got %v", charset)
+		}
+	}
+}
