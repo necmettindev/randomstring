@@ -35,7 +35,7 @@ func main() {
         Length: 10,
     }
 
-    result, _ := randomstring.GenerateStrin(opts)
+    result, _ := randomstring.GenerateString(opts)
 
     fmt.Println(result)
 }
