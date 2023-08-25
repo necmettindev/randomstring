@@ -30,6 +30,7 @@ type GenerationOptions struct {
 	CustomCharset          Charset
 }
 
+// generateStringFromCharset generates a random string from a given charset
 func generateStringFromCharset(charset Charset, length int) (string, error) {
 	if len(charset) == 0 || length <= 0 {
 		return "", errors.New("invalid charset or length")
@@ -47,6 +48,8 @@ func generateStringFromCharset(charset Charset, length int) (string, error) {
 
 	return string(result), nil
 }
+
+// modifyCharset modifies the charset based on the options
 func modifyCharset(opts GenerationOptions, charsetMappings map[string]Charset, charset Charset) Charset {
 	if opts.DisableNumeric {
 		charset = Charset(strings.ReplaceAll(string(charset), string(charsetMappings["numeric"]), ""))
@@ -63,6 +66,7 @@ func modifyCharset(opts GenerationOptions, charsetMappings map[string]Charset, c
 	return charset
 }
 
+// generateString generates a random string based on the options
 func generateString(opts GenerationOptions) (string, error) {
 	charsetMappings := map[string]Charset{
 		"numeric":         Numeric,
