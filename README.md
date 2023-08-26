@@ -1,4 +1,4 @@
-# RandomString Generator
+# Random String Generator
 
 This library assists in generating random strings based on specific characteristics. You can create random strings consisting of alphanumeric characters, letters only, digits only, special characters, or even a custom character set.
 
